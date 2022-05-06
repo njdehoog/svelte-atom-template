@@ -1,6 +1,6 @@
-import App from './App.svelte';
+import Atom from './Atom.svelte';
 
-const app = new App({
+const app = new Atom({
 	target: document.body,
 	props: {
 		name: 'world'
