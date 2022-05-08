@@ -42,12 +42,6 @@ export default {
 		svelte({
 			preprocess: sveltePreprocess({
 				sourceMap: !production,
-	            scss: {
-	              // We can use a path relative to the root because
-	              // svelte-preprocess automatically adds it to `includePaths`
-	              // if none is defined.
-	            //   prependData: `@import 'src/styles/mq.scss';`
-	            },
 				postcss: {
 				  plugins: [require('autoprefixer')()]
 				}
