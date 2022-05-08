@@ -1,7 +1,7 @@
 import Atom from './Atom.svelte';
 
 const app = new Atom({
-	target: document.body,
+	target: document.getElementById('gv-atom'),
 	props: {
 		name: 'world'
 	}
