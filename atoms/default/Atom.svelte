@@ -4,7 +4,7 @@
 
 <div class="atom">
 	<h1>Hello atom!</h1>
-	<p>This is an {type} atom</p>
+	<p>This is an {type} atom!</p>
 </div>
 
 <style lang="scss">
