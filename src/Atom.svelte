@@ -8,10 +8,7 @@
 </div>
 
 <style lang="scss">
-	@import "styles/atom-defaults.scss";
-
-	h1 {
-		font-size: 2em;
-		color: #121212;
+	:global {
+		@import "styles/atom-defaults.scss";
 	}
 </style>

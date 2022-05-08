@@ -1,6 +1,6 @@
 @import "mq.scss";
 
-:global(.content__main-column--interactive) {
+.content__main-column--interactive {
     @include mq(leftCol) {
         margin-left: 160px;
     }

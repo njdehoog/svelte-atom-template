@@ -56,15 +56,6 @@ export default {
 				// enable run-time checks when not in production
 				dev: !production
 			},
-			onwarn: (warning, handler) => {
-				const { code, frame } = warning;
-
-				// suppress warnings for unused :global css selectors 
-				if (code === "css-unused-selector" && frame.includes(":global"))
-				  return;
-			
-				handler(warning);
-			}
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
