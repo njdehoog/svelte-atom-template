@@ -5,6 +5,7 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 import testharness from './harness/generate-test-harness.js'; 
+import sveltePreprocess from 'svelte-preprocess';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -39,9 +40,30 @@ export default {
 	},
 	plugins: [
 		svelte({
+			preprocess: sveltePreprocess({
+				sourceMap: !production,
+	            scss: {
+	              // We can use a path relative to the root because
+	              // svelte-preprocess automatically adds it to `includePaths`
+	              // if none is defined.
+	            //   prependData: `@import 'src/styles/mq.scss';`
+	            },
+				postcss: {
+				  plugins: [require('autoprefixer')()]
+				}
+			 }),
 			compilerOptions: {
 				// enable run-time checks when not in production
 				dev: !production
+			},
+			onwarn: (warning, handler) => {
+				const { code, frame } = warning;
+
+				// suppress warnings for unused :global css selectors 
+				if (code === "css-unused-selector" && frame.includes(":global"))
+				  return;
+			
+				handler(warning);
 			}
 		}),
 		// we'll extract any component CSS out into
