@@ -6,6 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 import testharness from './harness/generate-test-harness.js'; 
 import sveltePreprocess from 'svelte-preprocess';
+import strip from '@rollup/plugin-strip';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -63,6 +64,9 @@ export default {
 			dedupe: ['svelte']
 		}),
 		commonjs(),
+
+		// Remove debugger statements and functions like assert.equal and console.log.
+		production && strip(),
 
 		!production && testharness(),
 
