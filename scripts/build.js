@@ -7,7 +7,11 @@ const { promises: { readdir }, lstatSync } = require('fs');
 const atomsPath = path.resolve(__dirname, '../atoms')
 const buildPath = path.resolve(__dirname, '../public/build')
 
-process.env.ROLLUP_WATCH = true
+const args = process.argv.slice(2);
+const shouldWatch = (args[0] && args[0] === '--watch') || false;
+if (shouldWatch) {
+    process.env.ROLLUP_WATCH = true
+}
 
 loadConfigFile(path.resolve(__dirname, '../rollup.config.js')).then(
   async ({ options, warnings }) => {
@@ -33,14 +37,16 @@ loadConfigFile(path.resolve(__dirname, '../rollup.config.js')).then(
         await bundle.write(buildOptions.output);
     }
 
-    const watcher = rollup.watch(buildOptionsList);
+    if (shouldWatch) {
+        const watcher = rollup.watch(buildOptionsList);
 
-    // This will make sure that bundles are properly closed after each run
-    watcher.on('event', ({ result }) => {
-        if (result) {
-            result.close();
-        }
-    });
+        // This will make sure that bundles are properly closed after each run
+        watcher.on('event', ({ result }) => {
+            if (result) {
+                result.close();
+            }
+        });
+    }
   }
 );
 

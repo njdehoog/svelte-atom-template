@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "node scripts/build.js",
-    "dev": "rollup -c -w",
+    "dev": "node scripts/build.js --watch",
     "start": "sirv public --no-clear"
   },
   "devDependencies": {
