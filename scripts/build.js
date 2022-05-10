@@ -5,7 +5,7 @@ const rollup = require('rollup');
 const { promises: { readdir }, lstatSync } = require('fs');
 
 const atomsPath = path.resolve(__dirname, '../atoms')
-const buildPath = path.resolve(__dirname, '../public/build')
+const buildPath = path.resolve(__dirname, '../build/atoms')
 
 const args = process.argv.slice(2);
 const shouldWatch = (args[0] && args[0] === '--watch') || false;
@@ -22,12 +22,15 @@ loadConfigFile(path.resolve(__dirname, '../rollup.config.js')).then(
 
     let optionsObj = options[0]
     let buildOptionsList = atomDirectories.map(atomDirectory => {
+
+        const atomName = atomDirectory.charAt(0).toUpperCase() + atomDirectory.slice(1)
         return {
             ...optionsObj,
             input: path.join(atomsPath, atomDirectory, 'main.js'),
             output: {
                  ...optionsObj.output[0],
                 file: path.join(buildPath, atomDirectory, 'bundle.js'),
+                name: 'atom' + atomName,
             }
         }
     })

@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node scripts/build.js",
     "dev": "node scripts/build.js --watch",
-    "start": "sirv public --no-clear"
+    "start": "sirv build --no-clear"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",

@@ -4,7 +4,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
-import testharness from './harness/generate-test-harness.js'; 
+import testharness from './scripts/generateTestHarness.js';
 import sveltePreprocess from 'svelte-preprocess';
 import strip from '@rollup/plugin-strip';
 
@@ -35,7 +35,6 @@ export default {
 	output: {
 		sourcemap: true,
 		format: 'iife',
-		name: 'app',
 	},
 	plugins: [
 		svelte({
@@ -76,7 +75,7 @@ export default {
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
-		!production && livereload('public'),
+		!production && livereload('build'),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
