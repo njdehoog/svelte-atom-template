@@ -2,15 +2,20 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "node scripts/build.js",
     "dev": "node scripts/build.js --watch",
+    "deploy": "node scripts/deploy.js",
+    "deploylog": "node scripts/deploylog.js",
+    "deploylog:preview": "node scripts/deploylog.js --preview",
     "start": "sirv build --no-clear"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-html": "^0.2.4",
     "@rollup/plugin-node-resolve": "^11.0.0",
+    "@rollup/plugin-replace": "^4.0.0",
     "@rollup/plugin-strip": "^2.1.0",
     "autoprefixer": "^10.4.7",
     "lodash": "^4.17.21",

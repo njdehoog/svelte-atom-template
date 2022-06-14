@@ -3,8 +3,7 @@
 </script>
 
 <div class="atom">
-	<h1>Hello atom!</h1>
-	<p>This is an {type} atom!</p>
+	<h1>Welcome to the Atom template. Start creating your project in Atom.svelte</h1>
 </div>
 
 <style lang="scss">
