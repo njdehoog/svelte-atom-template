@@ -14,7 +14,7 @@ export default function testharness(opts = {}) {
 
     return {
         name: 'rollup-plugin-testharness',
-        async generateBundle(outputOptions, bundle) {
+        async writeBundle(outputOptions, bundle) {
             let indexHTML = await sourceForIndex();
             fs.writeFileSync(path.join(outputPath, 'index.html'), indexHTML);
 
